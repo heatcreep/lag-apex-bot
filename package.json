@@ -4,9 +4,9 @@
   "description": "a simple bot for apex to track stats in the LAG Discord server",
   "main": "index.js",
   "scripts": {
-    "build": "tsc index.ts",
-    "deploy-commands": "ts-node src/commands.ts",
-    "serve": "ts-node src/commands.ts && ts-node src/index.ts"
+    "build": "tsc src/index.ts",
+    "deploy-commands": "ts-node src/deploy-commands.ts",
+    "serve": "npm run deploy-commands && ts-node src/index.ts"
   },
   "author": "Andrew Owen",
   "license": "ISC",

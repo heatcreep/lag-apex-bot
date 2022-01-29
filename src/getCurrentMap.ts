@@ -1,47 +1,46 @@
-const API_URL = "https://api.mozambiquehe.re"
-import fetch from 'node-fetch'
-const {APEX_API_KEY = ""} = process.env
+const API_URL = "https://api.mozambiquehe.re";
+import fetch from "node-fetch";
+const { APEX_API_KEY = "" } = process.env;
 
 type CurrentMap = {
-    map: string
-    asset: string
-    remainingTimer?: string
-}
+    map: string;
+    asset: string;
+    remainingTimer?: string;
+};
 
 export interface ApexMap {
     battle_royale: {
-        current: CurrentMap
+        current: CurrentMap;
         next: {
-            map: string
-        }
-    }
+            map: string;
+        };
+    };
     ranked: {
-        current: CurrentMap
+        current: CurrentMap;
         next: {
-            map: string
-        }
-    }
+            map: string;
+        };
+    };
     arenas: {
-        current: CurrentMap
+        current: CurrentMap;
         next: {
-            map: string
-        }
-    }
+            map: string;
+        };
+    };
     arenasRanked: {
-        current: CurrentMap
+        current: CurrentMap;
         next: {
-            map: string
-        }
-    }
+            map: string;
+        };
+    };
 }
 
 export default async (): Promise<ApexMap> => {
-
     const params = new URLSearchParams({
         version: "5",
-        auth: APEX_API_KEY
-    })
+        auth: APEX_API_KEY,
+    });
 
-    const response = await fetch(`${API_URL}/maprotation?${params}`)
-    return await response.json()
-}
+    const response = await fetch(`${API_URL}/maprotation?${params}`);
+    return await response.json();
+};
