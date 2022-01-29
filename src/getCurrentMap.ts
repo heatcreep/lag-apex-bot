@@ -1,6 +1,6 @@
-const API_URL = "https://api.mozambiquehe.re";
-import fetch from "node-fetch";
-const { APEX_API_KEY = "" } = process.env;
+const API_URL = 'https://api.mozambiquehe.re';
+import fetch from 'node-fetch';
+const { APEX_API_KEY = '' } = process.env;
 
 type CurrentMap = {
     map: string;
@@ -37,7 +37,7 @@ export interface ApexMap {
 
 export default async (): Promise<ApexMap> => {
     const params = new URLSearchParams({
-        version: "5",
+        version: '5',
         auth: APEX_API_KEY,
     });
 

@@ -1,8 +1,8 @@
-import { Client } from "discord.js";
-import { Event } from "src/types";
+import { Client } from 'discord.js';
+import { Event } from 'src/types';
 
 const event: Event = {
-    name: "ready",
+    name: 'ready',
     once: true,
     execute(client: Client) {
         if (!client.user || !client.application) {

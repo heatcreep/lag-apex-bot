@@ -1,18 +1,18 @@
-require("dotenv").config();
-var fs = require("fs");
-var _a = require("discord.js"),
+require('dotenv').config();
+var fs = require('fs');
+var _a = require('discord.js'),
     Client = _a.Client,
     Intents = _a.Intents;
 var DISCORD_TOKEN = process.env.DISCORD_TOKEN;
-console.log("Bot is starting...");
+console.log('Bot is starting...');
 var client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
-var eventFiles = fs.readdirSync("./events").filter(function (file) {
+var eventFiles = fs.readdirSync('./events').filter(function (file) {
     return /\.(ts|js)$/g.test(file);
 });
 var _loop_1 = function (file) {
-    var event_1 = require("./events/".concat(file));
+    var event_1 = require('./events/'.concat(file));
     if (event_1.once) {
         client.once(event_1.name, function () {
             var args = [];

@@ -1,17 +1,17 @@
-require("dotenv").config();
-import fs from "fs";
-import { REST } from "@discordjs/rest";
-import { Routes } from "discord-api-types/v9";
+require('dotenv').config();
+import fs from 'fs';
+import { REST } from '@discordjs/rest';
+import { Routes } from 'discord-api-types/v9';
 
 const {
-    DISCORD_TOKEN = "",
-    DISCORD_CLIENT_ID = "",
-    DISCORD_GUILD_ID = "",
+    DISCORD_TOKEN = '',
+    DISCORD_CLIENT_ID = '',
+    DISCORD_GUILD_ID = '',
 } = process.env;
 
 const commands = [];
 const commandFiles = fs
-    .readdirSync("./commands")
+    .readdirSync('./commands')
     .filter((file: string) => /\.(ts|js)$/g.test(file));
 
 for (const file of commandFiles) {
@@ -19,7 +19,7 @@ for (const file of commandFiles) {
     commands.push(command.data.toJSON());
 }
 
-const rest = new REST({ version: "9" }).setToken(DISCORD_TOKEN);
+const rest = new REST({ version: '9' }).setToken(DISCORD_TOKEN);
 
 (async () => {
     try {
@@ -33,7 +33,7 @@ const rest = new REST({ version: "9" }).setToken(DISCORD_TOKEN);
             }
         );
 
-        console.log("Successfully registered application commands.");
+        console.log('Successfully registered application commands.');
     } catch (error) {
         console.error(error);
     }

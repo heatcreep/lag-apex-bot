@@ -1,17 +1,17 @@
-require("dotenv").config();
-const fs = require("fs");
-const { Client, Intents } = require("discord.js");
+require('dotenv').config();
+const fs = require('fs');
+const { Client, Intents } = require('discord.js');
 
 const { DISCORD_TOKEN } = process.env;
 
-console.log("Bot is starting...");
+console.log('Bot is starting...');
 
 const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
 const eventFiles = fs
-    .readdirSync("./events")
+    .readdirSync('./events')
     .filter((file: string) => /\.(ts|js)$/g.test(file));
 
 for (const file of eventFiles) {

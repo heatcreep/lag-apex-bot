@@ -1,19 +1,19 @@
-import { CommandInteraction, MessageEmbed } from "discord.js";
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { CommandInteraction, MessageEmbed } from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
 
-import getPlayerRank from "../getPlayerRank";
+import getPlayerRank from '../getPlayerRank';
 
 const handleRankedEmbedColor = (rank: string): number => {
     switch (rank) {
-        case "Bronze":
+        case 'Bronze':
             return 0xb19282;
-        case "Silver":
+        case 'Silver':
             return 0xd3d3dd;
-        case "Gold":
+        case 'Gold':
             return 0xf4dba5;
-        case "Platinum":
+        case 'Platinum':
             return 0x95f9fd;
-        case "Diamond":
+        case 'Diamond':
             return 0x54a9f8;
         default:
             return 0x2a2d37;
@@ -22,18 +22,18 @@ const handleRankedEmbedColor = (rank: string): number => {
 
 const command = {
     data: new SlashCommandBuilder()
-        .setName("ab-rank")
-        .setDescription("Replies with users rank!")
+        .setName('ab-rank')
+        .setDescription('Replies with users rank!')
         .addStringOption((option) =>
-            option.setName("player").setDescription("Enter your player name.")
+            option.setName('player').setDescription('Enter your player name.')
         ),
     async execute(interaction: CommandInteraction): Promise<void> {
         await interaction.deferReply();
 
-        const player = interaction.options.getString("player");
+        const player = interaction.options.getString('player');
 
         if (player == null) {
-            interaction.editReply("Please provide a username.");
+            interaction.editReply('Please provide a username.');
             return;
         }
 
@@ -57,7 +57,7 @@ const command = {
             };
 
             if (!rankName.length) {
-                interaction.editReply("No rank found for that name");
+                interaction.editReply('No rank found for that name');
                 return;
             }
 
