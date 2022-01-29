@@ -1,6 +1,6 @@
 require('dotenv').config();
-const fs = require('fs');
-const { Client, Intents } = require('discord.js');
+import fs from 'fs';
+import { Client, Intents } from 'discord.js';
 
 const { DISCORD_TOKEN } = process.env;
 
