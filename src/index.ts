@@ -1,16 +1,26 @@
-require('dotenv').config()
-import ready from "./listeners/ready"
-import { Client, Intents, MessageEmbed } from "discord.js"
-import interactionCreate from "./listeners/interactionCreate"
+require('dotenv').config();
+import fs from 'fs';
+import { Client, Intents } from 'discord.js';
 
-const { DISCORD_TOKEN } = process.env
+const { DISCORD_TOKEN } = process.env;
 
-console.log("Bot is starting...");
+console.log('Bot is starting...');
 
+const client = new Client({
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+});
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] })
+const eventFiles = fs
+    .readdirSync('./events')
+    .filter((file: string) => /\.(ts|js)$/g.test(file));
 
-ready(client)
-interactionCreate(client)
+for (const file of eventFiles) {
+    const event = require(`./events/${file}`);
+    if (event.once) {
+        client.once(event.name, (...args: any) => event.execute(...args));
+    } else {
+        client.on(event.name, (...args: any) => event.execute(...args));
+    }
+}
 
-client.login(DISCORD_TOKEN)
+client.login(DISCORD_TOKEN);
